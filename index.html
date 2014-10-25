@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Paste image plugin Demo --- Powered By YangYuan</title>
+  </head>
+  <body>
+  
+    <input type="text" id="container" placeholder="在这粘贴图片"/>
+    
+    <script src="lib/jquery.min.js"></script>
+    <script src="pasteimg/paste.image.js"></script>
+    <script>
+      //在需要监听粘贴事件的dom元素上调用pasteImage方法
+      //调用pasteImage方法需要传入一个callback参数
+      //一旦粘贴的内容中发现图片，就会调用callback
+      //调用callback时，会传入一个数组，包含了所有的图片
+      //本插件会尽可能的将图片转换成base64编码，但受到跨域的限制，如果不能转换，将返回图片的绝对url路径
+      $("#container").pasteImage(function(imgs){
+        $.each(imgs,function(i,n){
+           $("body").append("<img src='"+n+"' >");
+        });
+      });
+
+    </script>
+    
+  </body>
+</html>
